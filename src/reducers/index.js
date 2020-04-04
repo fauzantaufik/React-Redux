@@ -1,13 +1,24 @@
 import { combineReducers } from 'redux';
 
-const postListReducers = (data=[], action)=>{
-    if (action.type === 'FETCH_POST'){
-        return action.payload
+const postListReducer = (data=[], action)=>{
+    switch (action.type){
+        case 'FETCH_POST':
+            return action.payload
+        default:
+            return data
     }
+}
 
-    return data
+const UserHeaderReducer = (data=[], action)=>{
+    switch(action.type){
+        case 'FETCH_USER':
+            return [...data, action.payload]
+        default:
+            return data
+    }
 }
 
 export default combineReducers({
-    postList : postListReducers
+    postList : postListReducer,
+    users : UserHeaderReducer
 })
